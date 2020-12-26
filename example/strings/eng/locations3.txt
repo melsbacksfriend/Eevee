@@ -1,0 +1,216 @@
+0x0000|Littleroot Town
+0x0001|Oldale Town
+0x0002|Dewford Town
+0x0003|Lavaridge Town
+0x0004|Fallarbor Town
+0x0005|Verdanturf Town
+0x0006|Pacifidlog Town
+0x0007|Petalburg City
+0x0008|Slateport City
+0x0009|Mauville City
+0x000a|Rustboro City
+0x000b|Fortree City
+0x000c|Lilycove City
+0x000d|Mossdeep City
+0x000e|Sootopolis City
+0x000f|Ever Grande City
+0x0010|Route 101
+0x0011|Route 102
+0x0012|Route 103
+0x0013|Route 104
+0x0014|Route 105
+0x0015|Route 106
+0x0016|Route 107
+0x0017|Route 108
+0x0018|Route 109
+0x0019|Route 110
+0x001a|Route 111
+0x001b|Route 112
+0x001c|Route 113
+0x001d|Route 114
+0x001e|Route 115
+0x001f|Route 116
+0x0020|Route 117
+0x0021|Route 118
+0x0022|Route 119
+0x0023|Route 120
+0x0024|Route 121
+0x0025|Route 122
+0x0026|Route 123
+0x0027|Route 124
+0x0028|Route 125
+0x0029|Route 126
+0x002a|Route 127
+0x002b|Route 128
+0x002c|Route 129
+0x002d|Route 130
+0x002e|Route 131
+0x002f|Route 132
+0x0030|Route 133
+0x0031|Route 134
+0x0032|Underwater (Route 124)
+0x0033|Underwater (Route 126)
+0x0034|Underwater (Route 127)
+0x0035|Underwater (Route 128)
+0x0036|Underwater (Sootopolis City)
+0x0037|Granite Cave
+0x0038|Mt. Chimney
+0x0039|Safari Zone (RSE)
+0x003a|Battle Tower (RS) / Battle Frontier (E)
+0x003b|Petalburg Woods
+0x003c|Rusturf Tunnel
+0x003d|Abandoned Ship
+0x003e|New Mauville
+0x003f|Meteor Falls
+0x0040|Meteor Falls (unused)
+0x0041|Mt. Pyre
+0x0042|Hideout
+0x0043|Shoal Cave
+0x0044|Seafloor Cavern
+0x0045|Underwater (Seafloor Cavern)
+0x0046|Victory Road (RSE)
+0x0047|Mirage Island
+0x0048|Cave of Origin
+0x0049|Southern Island
+0x004a|Fiery Path
+0x004b|Fiery Path (2)
+0x004c|Jagged Pass
+0x004d|Jagged Pass (2)
+0x004e|Sealed Chamber
+0x004f|Underwater (Route 134)
+0x0050|Scorched Slab
+0x0051|Island Cave
+0x0052|Desert Ruins
+0x0053|Ancient Tomb
+0x0054|Inside of Truck
+0x0055|Sky Pillar
+0x0056|Secret Base
+0x0057|Ferry
+0x0058|Pallet Town
+0x0059|Viridian City
+0x005a|Pewter City
+0x005b|Cerulean City
+0x005c|Lavender Town
+0x005d|Vermilion City
+0x005e|Celadon City
+0x005f|Fuchsia City
+0x0060|Cinnabar Island
+0x0061|Indigo Plateau
+0x0062|Saffron City
+0x0063|Route 4 (Pokémon Center)
+0x0064|Route 10 (Pokémon Center)
+0x0065|Route 1
+0x0066|Route 2
+0x0067|Route 3
+0x0068|Route 4
+0x0069|Route 5
+0x006a|Route 6
+0x006b|Route 7
+0x006c|Route 8
+0x006d|Route 9
+0x006e|Route 10
+0x006f|Route 11
+0x0070|Route 12
+0x0071|Route 13
+0x0072|Route 14
+0x0073|Route 15
+0x0074|Route 16
+0x0075|Route 17
+0x0076|Route 18
+0x0077|Route 19
+0x0078|Route 20
+0x0079|Route 21
+0x007a|Route 22
+0x007b|Route 23
+0x007c|Route 24
+0x007d|Route 25
+0x007e|Viridian Forest
+0x007f|Mt. Moon
+0x0080|S.S. Anne
+0x0081|Underground Path (Routes 5-6)
+0x0082|Underground Path (Routes 7-8)
+0x0083|Diglett's Cave
+0x0084|Victory Road (FRLG)
+0x0085|Rocket Hideout
+0x0086|Silph Co.
+0x0087|Pokémon Mansion
+0x0088|Safari Zone (FRLG)
+0x0089|Pokémon League
+0x008a|Rock Tunnel
+0x008b|Seafoam Islands
+0x008c|Pokémon Tower
+0x008d|Cerulean Cave
+0x008e|Power Plant
+0x008f|One Island
+0x0090|Two Island
+0x0091|Three Island
+0x0092|Four Island
+0x0093|Five Island
+0x0094|Seven Island
+0x0095|Six Island
+0x0096|Kindle Road
+0x0097|Treasure Beach
+0x0098|Cape Brink
+0x0099|Bond Bridge
+0x009a|Three Isle Port
+0x009b|Sevii Isle 6
+0x009c|Sevii Isle 7
+0x009d|Sevii Isle 8
+0x009e|Sevii Isle 9
+0x009f|Resort Gorgeous
+0x00a0|Water Labyrinth
+0x00a1|Five Isle Meadow
+0x00a2|Memorial Pillar
+0x00a3|Outcast Island
+0x00a4|Green Path
+0x00a5|Water Path
+0x00a6|Ruin Valley
+0x00a7|Trainer Tower (exterior)
+0x00a8|Canyon Entrance
+0x00a9|Sevault Canyon
+0x00aa|Tanoby Ruins
+0x00ab|Sevii Isle 22
+0x00ac|Sevii Isle 23
+0x00ad|Sevii Isle 24
+0x00ae|Navel Rock (FRLG)
+0x00af|Mt. Ember
+0x00b0|Berry Forest
+0x00b1|Icefall Cave
+0x00b2|Rocket Warehouse
+0x00b3|Trainer Tower
+0x00b4|Dotted Hole
+0x00b5|Lost Cave
+0x00b6|Pattern Bush
+0x00b7|Altering Cave (FRLG)
+0x00b8|Tanoby Chambers
+0x00b9|Three Isle Path
+0x00ba|Tanoby Key
+0x00bb|Birth Island (FRLG)
+0x00bc|Monean Chamber
+0x00bd|Liptoo Chamber
+0x00be|Weepth Chamber
+0x00bf|Dilford Chamber
+0x00c0|Scufib Chamber
+0x00c1|Rixy Chamber
+0x00c2|Viapois Chamber
+0x00c3|Ember Spa
+0x00c4|Celadon Dept. (FRLG) Special Area (E)
+0x00c5|Aqua Hideout
+0x00c6|Magma Hideout
+0x00c7|Mirage Tower
+0x00c8|Birth Island (E)
+0x00c9|Faraway Island
+0x00ca|Artisan Cave
+0x00cb|Marine Cave
+0x00cc|Underwater (Marine Cave)
+0x00cd|Terra Cave
+0x00ce|Underwater (Route 105)
+0x00cf|Underwater (Route 125)
+0x00d0|Underwater (Route 129)
+0x00d1|Desert Underpass
+0x00d2|Altering Cave (E)
+0x00d3|Navel Rock (E)
+0x00d4|Trainer Hill
+0x00fd|(gift egg)
+0x00fe|(in-game trade)
+0x00ff|(fateful encounter)

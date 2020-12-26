@@ -1,0 +1,216 @@
+0x0000|Villa Raíz
+0x0001|Pueblo Escaso
+0x0002|Pueblo Azuliza
+0x0003|Pueblo Lavacalda
+0x0004|Pueblo Pardal
+0x0005|Pueblo Verdegal
+0x0006|Pueblo Oromar
+0x0007|Ciudad Petalia
+0x0008|Ciudad Portual
+0x0009|Ciudad Malvalona
+0x000a|Ciudad Férrica
+0x000b|Ciudad Arborada
+0x000c|Ciudad Calagua
+0x000d|Ciudad Algaria
+0x000e|Arrecípolis
+0x000f|Ciudad Colosalia
+0x0010|Ruta 101
+0x0011|Ruta 102
+0x0012|Ruta 103
+0x0013|Ruta 104
+0x0014|Ruta 105
+0x0015|Ruta 106
+0x0016|Ruta 107
+0x0017|Ruta 108
+0x0018|Ruta 109
+0x0019|Ruta 110
+0x001a|Ruta 111
+0x001b|Ruta 112
+0x001c|Ruta 113
+0x001d|Ruta 114
+0x001e|Ruta 115
+0x001f|Ruta 116
+0x0020|Ruta 117
+0x0021|Ruta 118
+0x0022|Ruta 119
+0x0023|Ruta 120
+0x0024|Ruta 121
+0x0025|Ruta 122
+0x0026|Ruta 123
+0x0027|Ruta 124
+0x0028|Ruta 125
+0x0029|Ruta 126
+0x002a|Ruta 127
+0x002b|Ruta 128
+0x002c|Ruta 129
+0x002d|Ruta 130
+0x002e|Ruta 131
+0x002f|Ruta 132
+0x0030|Ruta 133
+0x0031|Ruta 134
+0x0032|Bajo el agua (Ruta 124)
+0x0033|Bajo el agua (Ruta 126)
+0x0034|Bajo el agua (Ruta 127)
+0x0035|Bajo el agua (Ruta 128)
+0x0036|Bajo el agua (Arrecípolis)
+0x0037|Cueva Granito
+0x0038|Monte Cenizo
+0x0039|Zona Safari (RZE)
+0x003a|Torre Batalla (RZ) / Frente Batalla (E)
+0x003b|Bosque Petalia
+0x003c|Túnel Fervergal
+0x003d|Nao Abandonada
+0x003e|Malvalanova
+0x003f|Cascada Meteoro
+0x0040|Cascada Meteoro (sin usar)
+0x0041|Monte Pírico
+0x0042|Hideout
+0x0043|Cueva Cardumen
+0x0044|Caverna Abisal
+0x0045|Bajo el agua (Caverna Abisal)
+0x0046|Calle Victoria (RSE)
+0x0047|Isla Espejismo
+0x0048|Cueva Ancestral
+0x0049|Isla del Sur
+0x004a|Senda Ígnea
+0x004b|Senda Ígnea (2)
+0x004c|Desfiladero
+0x004d|Desfiladero (2)
+0x004e|Cámara Sellada
+0x004f|Bajo el agua (Ruta 134)
+0x0050|Gruta Solar
+0x0051|Isla Cueva
+0x0052|Ruinas del desierto
+0x0053|Tumba Antigua
+0x0054|Interior Camión
+0x0055|Pilar Celeste
+0x0056|Base secreta
+0x0057|Ferry
+0x0058|Pueblo Paleta
+0x0059|Ciudad Verde
+0x005a|Ciudad Plateada
+0x005b|Ciudad Celeste
+0x005c|Pueblo Lavanda
+0x005d|Ciudad Carmín
+0x005e|Ciudad Azulona
+0x005f|Ciudad Fucsia
+0x0060|Isla Canela
+0x0061|Meseta Añil
+0x0062|Ciudad Azafrán
+0x0063|Ruta 4 (Centro Pokémon)
+0x0064|Ruta 10 (Centro Pokémon)
+0x0065|Ruta 1
+0x0066|Ruta 2
+0x0067|Ruta 3
+0x0068|Ruta 4
+0x0069|Ruta 5
+0x006a|Ruta 6
+0x006b|Ruta 7
+0x006c|Ruta 8
+0x006d|Ruta 9
+0x006e|Ruta 10
+0x006f|Ruta 11
+0x0070|Ruta 12
+0x0071|Ruta 13
+0x0072|Ruta 14
+0x0073|Ruta 15
+0x0074|Ruta 16
+0x0075|Ruta 17
+0x0076|Ruta 18
+0x0077|Ruta 19
+0x0078|Ruta 20
+0x0079|Ruta 21
+0x007a|Ruta 22
+0x007b|Ruta 23
+0x007c|Ruta 24
+0x007d|Ruta 25
+0x007e|Bosque Verde
+0x007f|Mt. Moon
+0x0080|S.S. Anne
+0x0081|Vía Subterránea (Rutas 5-6)
+0x0082|Vía Subterránea (Rutas 7-8)
+0x0083|Cueva Diglett
+0x0084|Calle Victoria (FRLG)
+0x0085|Guarida Rocket
+0x0086|Silph S.A.
+0x0087|Mansión Azulona
+0x0088|Zona Safari(FRLG)
+0x0089|Liga Pokémon
+0x008a|Túnel Roca
+0x008b|Islas Espuma
+0x008c|Torre Pokémon
+0x008d|Cueva Celeste
+0x008e|Central Energía
+0x008f|Isla Prima
+0x0090|Isla Secunda
+0x0091|Isla Tera
+0x0092|Isla Quarta
+0x0093|Isla Inta
+0x0094|Isla Sétima
+0x0095|Isla Exta
+0x0096|Camino Candente
+0x0097|Playa Tesoro
+0x0098|Cabo Extremo
+0x0099|Puente Unión
+0x009a|Puerto Isla Tera
+0x009b|Isla Sete 6
+0x009c|Isla Sete 7
+0x009d|Isla Sete 8
+0x009e|Isla Sete 9
+0x009f|Lugar de Recreo
+0x00a0|Aquarinto
+0x00a1|Prado Isla Inta
+0x00a2|Pilar Recuerdo
+0x00a3|Isla Aislada
+0x00a4|Vía Verde
+0x00a5|Vía Acuática
+0x00a6|Valle Ruinas
+0x00a7|Torre Desafío (exterior)
+0x00a8|Entrada al Cañón
+0x00a9|Cañón Sétano
+0x00aa|Ruinas Sete
+0x00ab|Isla Sete 22
+0x00ac|Isla Sete 23
+0x00ad|Isla Sete 24
+0x00ae|Roca Ombligo (FRLG)
+0x00af|Monte Ascuas
+0x00b0|Bosque Baya
+0x00b1|Cueva Glaciada
+0x00b2|Almacén Rocket
+0x00b3|Torre Desafío
+0x00b4|Cueva Punteada
+0x00b5|Cueva Perdida
+0x00b6|Bosquejo 
+0x00b7|Cueva Cambiante (FRLG)
+0x00b8|Cámaras Sete
+0x00b9|Vía Isla Tera
+0x00ba|Llave Sete
+0x00bb|Isla Origen (FRLG)
+0x00bc|Cámara Anémuna
+0x00bd|Cámara Tulipdos
+0x00be|Cámara Trisante
+0x00bf|Cámara Quarciso
+0x00c0|Cámara Hibinca
+0x00c1|Cámara Seiris
+0x00c2|Cámara Pasiete
+0x00c3|Balneario Ascuas
+0x00c4|Centro Com. Azulona (FRLG) Area Especial (E)
+0x00c5|Guarida Aqua
+0x00c6|Guarida Magma
+0x00c7|Torre Espejismo
+0x00c8|Isla Origen (E)
+0x00c9|Isla Suprema
+0x00ca|Cueva Taller
+0x00cb|Cueva Marina
+0x00cc|Bajo el agua (Cueva Marina)
+0x00cd|Cueva Terrena
+0x00ce|Bajo el agua (Ruta 105)
+0x00cf|Bajo el agua (Ruta 125)
+0x00d0|Bajo el agua (Ruta 129)
+0x00d1|Gruta Desértica
+0x00d2|Cueva Cambiante (E)
+0x00d3|Roca Ombligo (E)
+0x00d4|Colina Desafío
+0x00fd|(gift egg)
+0x00fe|(in-game trade)
+0x00ff|(fateful encounter)

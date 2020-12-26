@@ -1,0 +1,146 @@
+Campeón de Kalos
+Campeón de Hoenn (RSE)
+Campeón de Sinnoh
+Afecto
+Ejercicio
+Figura del Combate
+Experto del Combate
+Esfuerzo
+Alerta
+Impacto
+Abatimiento
+Descuido
+Relax
+Cabezada
+Sonrisa
+Maravilla
+Realeza
+Realeza Maravila
+Artista
+Huella
+Récord
+Leyenda
+Campo
+Nacional
+Planeta
+Mundo
+Clásica
+Principal
+Evento
+Cumpleaños
+Especial
+Recuerdo
+Deseo
+Campeón de Torneo
+Campeón de Área
+Campeón Nacional
+Campeón Mundial
+Cintas de concursos anteriores
+Cintas de batallas anteriores
+Campeón de Hoenn (ORAS)
+Cinta estelar de los concursos
+Cinta estrella del carisma
+Cinta estrella de la belleza
+Cinta estrella de la dulzura
+Cinta estrella del ingenio
+Cinta estrella de la dureza
+Carisma (G3)
+Carisma Alto
+Carisma Avanzado
+Carisma Experto
+Belleza (G3)
+Belleza Alto
+Belleza Avanzado
+Belleza Experto
+Dulzura (G3)
+Dulzura Alto
+Dulzura Avanzado
+Dulzura Experto
+Ingenio (G3)
+Ingenio Alto
+Ingenio Avanzado
+Ingenio Experto
+Dureza (G3)
+Dureza Alto
+Dureza Avanzado
+Dureza Experto
+Carisma (G4)
+Carisma Difícil
+Carisma Superior
+Carisma Experto
+Belleza (G4)
+Belleza Difícil
+Belleza Superior
+Belleza Experto
+Dulzura (G4)
+Dulzura Difícil
+Dulzura Superior
+Dulzura Experto
+Ingenio (G4)
+Ingenio Difícil
+Ingenio Superior
+Ingenio Experto
+Dureza (G4)
+Dureza Difícil
+Dureza Superior
+Dureza Experto
+Ganador
+Victoria
+Habilidad
+Gran Habilidad
+Doble Habilidad
+Habilidad Múltiple
+Habilidad Par
+Hablildad Mundial
+Campeón de Alola
+Maestro Battle Royale
+As del Árbol
+Maestro del Árbol
+Campeón de Galar
+Maestro de la Torre
+Rango Maestro
+Emblema Almuerzo
+Emblema Noche
+Emblema Ocaso
+Emblema Alba
+Emblema Nube
+Emblema Lluvia
+Emblema Tormenta
+Emblema Nieve
+Emblema Nevasca
+Emblema Sequedad
+Emblema Polvareda
+Emblema Niebla
+Emblema Destino
+Emblema Pesca
+Emblema Curri
+Emblema Familiaridad
+Emblema Rareza
+Emblema Travesura
+Emblema Despreocupación
+Emblema Nerviosismo
+Emblema Ilusión
+Emblema Carisma
+Emblema Compostura
+Emblema Pasión
+Emblema Distracción
+Emblema Felicidad
+Emblema Cólera
+Emblema Sonrisa
+Emblema Llanto
+Emblema Buen Humor
+Emblema Mal Humor
+Emblema Intelecto
+Emblema Impulsividad
+Emblema Astucia
+Emblema Intimidación
+Emblema Amabilidad
+Emblema Desconcierto
+Emblema Motivación
+Emblema Desgana
+Emblema Confianza
+Emblema Inseguridad
+Emblema Sencillez
+Emblema Altanería
+Emblema Vigor
+Emblema Extenuación
