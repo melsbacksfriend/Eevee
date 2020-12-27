@@ -17,5 +17,5 @@ https://discord.gg/nxrSSs9
 - DO NOT TRY TO OPEN MORE THAN ONE SAVE AT A TIME!  
 
 ## Pro tips: 
-- ~~To delete a Pokémon, paste an empty space.  ~~
+- ~~To delete a Pokémon, paste an empty space.~~  
 - This program automatically creates the bank at sdmc:/switch/Eevee.bank on the first run.  
