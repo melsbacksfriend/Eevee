@@ -135,6 +135,11 @@ std::string toSpriteName(std::string pokemonName)
 	{
 		pokemonName.replace(pokemonName.begin() + (int)found5, pokemonName.begin() + (int)found5 + 1, "-");
 	}
+	std::size_t found6 = pokemonName.find(":");
+	if (found6 != std::string::npos)
+    {
+        pokemonName.erase(pokemonName.begin() + (int)found6);
+    }
 	std::for_each(pokemonName.begin(), pokemonName.end(), [](char & c) {
         c = ::tolower(c);
     });
@@ -231,6 +236,36 @@ int main(int argc, char* argv[])
         	for (int l = 0; l < 344; l++)
         	{
         		bankData[i + (j * 344) + l] = clipboard->rawData()[l];
+        	}
+        	return true;
+        });
+        pokelist2[i][j]->registerAction("Dump pkx", brls::Key::Y, [=]()->bool{
+    	time_t rawtime;
+    	time(&rawtime);
+    	std::string dumpName;
+        if (pokeToString(pokegomz[i][j]->species()) != "Type: Null")
+        {
+        	dumpName = pokeToString(pokegomz[i][j]->species()) + "-" + std::to_string(localtime(&rawtime)->tm_year + 1900) + "-" + std::to_string(localtime(&rawtime)->tm_mon + 1) + "-" + std::to_string(localtime(&rawtime)->tm_mday) + "-" + std::to_string(localtime(&rawtime)->tm_hour) + "-" + std::to_string(localtime(&rawtime)->tm_min) + "-" + std::to_string(localtime(&rawtime)->tm_sec) + ".pk8";
+        }
+        else
+        {
+        	dumpName = "Type Null-" + std::to_string(localtime(&rawtime)->tm_year + 1900) + "-" + std::to_string(localtime(&rawtime)->tm_mon + 1) + "-" + std::to_string(localtime(&rawtime)->tm_mday) + "-" + std::to_string(localtime(&rawtime)->tm_hour) + "-" + std::to_string(localtime(&rawtime)->tm_min) + "-" + std::to_string(localtime(&rawtime)->tm_sec) + ".pk8";
+        }
+        FILE* dumpFile = fopen(dumpName.c_str(), "wb");
+        fwrite(pokegomz[i][j]->partyClone()->rawData(), 1, 344, dumpFile);
+        fclose(dumpFile);
+        return true;
+        });
+        pokelist2[i][j]->registerAction("Delete", brls::Key::X, [=]()->bool{
+        	FILE* emptyPkxFile = fopen("romfs:/Empty Space.pk8", "rb");
+        	u8* emptyPkxData = new u8[344];
+        	fread(emptyPkxData, 1, 344, emptyPkxFile);
+        	fclose(emptyPkxFile);
+        	std::unique_ptr<pksm::PKX> emptyPkx = pksm::PKX::getPKM(pksm::Generation::EIGHT, emptyPkxData, (size_t)344, false);
+        	emptyPkx->refreshChecksum();
+        	for (int l = 0; l < 344; l++)
+        	{
+        		bankData[i + (j * 344) + l] = emptyPkx->rawData()[l];
         	}
         	return true;
         });
@@ -334,6 +369,36 @@ int main(int argc, char* argv[])
         	clipboard->refreshChecksum();
         	save->pkm(*clipboard, l, k, true);
         	save->dex(*clipboard);
+        	
+        	return true;
+        });
+        vaporeon[l][k]->registerAction("Dump pkx", brls::Key::Y, [=]()->bool{
+    	time_t rawtime;
+    	time(&rawtime);
+    	std::string dumpName;
+        if (pokeToString(box1Data[l][k]->species()) != "Type: Null")
+        {
+        	dumpName = pokeToString(box1Data[l][k]->species()) + "-" + std::to_string(localtime(&rawtime)->tm_year + 1900) + "-" + std::to_string(localtime(&rawtime)->tm_mon + 1) + "-" + std::to_string(localtime(&rawtime)->tm_mday) + "-" + std::to_string(localtime(&rawtime)->tm_hour) + "-" + std::to_string(localtime(&rawtime)->tm_min) + "-" + std::to_string(localtime(&rawtime)->tm_sec) + ".pk8";
+        }
+        else
+        {
+        	dumpName = "Type Null-" + std::to_string(localtime(&rawtime)->tm_year + 1900) + "-" + std::to_string(localtime(&rawtime)->tm_mon + 1) + "-" + std::to_string(localtime(&rawtime)->tm_mday) + "-" + std::to_string(localtime(&rawtime)->tm_hour) + "-" + std::to_string(localtime(&rawtime)->tm_min) + "-" + std::to_string(localtime(&rawtime)->tm_sec) + ".pk8";
+        }
+        FILE* dumpFile = fopen(dumpName.c_str(), "wb");
+        fwrite(save->pkm(l, k)->partyClone()->rawData(), 1, 344, dumpFile);
+        fclose(dumpFile);
+        return true;
+        });
+        vaporeon[l][k]->registerAction("Delete", brls::Key::X, [=]()->bool{
+        	FILE* emptyPkxFile = fopen("romfs:/Empty Space.pk8", "rb");
+        	u8* emptyPkxData = new u8[344];
+        	fread(emptyPkxData, 1, 344, emptyPkxFile);
+        	fclose(emptyPkxFile);
+        	std::unique_ptr<pksm::PKX> emptyPkx = pksm::PKX::getPKM(pksm::Generation::EIGHT, emptyPkxData, (size_t)344, false);
+        	emptyPkx = save->transfer(*emptyPkx);
+        	emptyPkx->refreshChecksum();
+        	save->pkm(*emptyPkx, l, k, true);
+        	save->dex(*emptyPkx);
         	
         	return true;
         });
