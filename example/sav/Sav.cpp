@@ -71,10 +71,14 @@ namespace pksm
             case 0xB8800:
             case 0x100000:
                 return std::make_unique<SavLGPE>(dt, length);
-            case 0x180B19: // 1.0->1.1->1.2
-            case 0x180AD0: // 1.0->1.2
-            case 0x187668:
-            case 0x18764A:
+            case 0x1716B3: // base
+            case 0x17195E: // base->wañel
+            case 0x180B19: // base->wañel->armor
+            case 0x180AD0: // base->armor
+            case 0x18764A: // base->crown
+            case 0x187668: // base->armor->crown
+            case 0x187693: // base->wañel->crown
+            case 0x1876B1: // base->wañel->armor->crown
                 return std::make_unique<SavSWSH>(dt, length);
             default:
                 return std::unique_ptr<Sav>(nullptr);
