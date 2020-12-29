@@ -50,6 +50,9 @@ std::vector<std::vector<std::string>> namelst(32);
 std::unique_ptr<pksm::Sav> save;
 std::unique_ptr<pksm::PKX> box1Data[32][30];
 std::unique_ptr<pksm::PKX> clipboard;
+int clipBoxIdx;
+int clipPkmIdx;
+bool clipFromBank;
 std::string filepath;
 u32 size = 0;
 bool CheckIsDir(std::string Path)
@@ -224,6 +227,9 @@ int main(int argc, char* argv[])
         
         pokelist2[i][j]->registerAction("Copy", brls::Key::L, [=]()->bool{
 			u8* readData = new u8[344];
+			clipBoxIdx = i;
+			clipPkmIdx = j;
+			clipFromBank = true;
 			for (int l = 0; l < 344; l++)
 			{
 				readData[l] = bankData[i + (j * 344) + l];
@@ -232,11 +238,44 @@ int main(int argc, char* argv[])
         	return true;
         });
         pokelist2[i][j]->registerAction("Paste", brls::Key::R, [=]()->bool{
-        	clipboard->refreshChecksum();
-        	for (int l = 0; l < 344; l++)
-        	{
-        		bankData[i + (j * 344) + l] = clipboard->rawData()[l];
-        	}
+        	brls::Dialog* pasteDialog = new brls::Dialog("Do you want to\nmove or copy?");
+        	pasteDialog->addButton("Copy", [=](brls::View* view){
+        		pasteDialog->close();
+        		clipboard->refreshChecksum();
+        		for (int l = 0; l < 344; l++)
+        		{
+        			bankData[i + (j * 344) + l] = clipboard->rawData()[l];
+        		}
+        	});
+        	pasteDialog->addButton("Move", [=](brls::View* view){
+        		pasteDialog->close();
+        		FILE* emptyPkxFile = fopen("romfs:/Empty Space.pk8", "rb");
+        		u8* emptyPkxData = new u8[344];
+        		fread(emptyPkxData, 1, 344, emptyPkxFile);
+        		fclose(emptyPkxFile);
+        		std::unique_ptr<pksm::PKX> emptyPkx = pksm::PKX::getPKM(pksm::Generation::EIGHT, emptyPkxData, (size_t)344, false);
+        		emptyPkx = save->transfer(*emptyPkx);
+        		emptyPkx->refreshChecksum();
+        		if (clipFromBank)
+        		{
+        			for (int l = 0; l < 344; l++)
+        			{
+        				bankData[clipBoxIdx + (clipPkmIdx * 344) + l] = emptyPkx->rawData()[l];
+        			}
+        		}
+        		else
+        		{
+        			save->pkm(*emptyPkx, clipBoxIdx, clipPkmIdx, true);
+        			save->dex(*emptyPkx);
+        		}
+        		clipboard->refreshChecksum();
+        		for (int l = 0; l < 344; l++)
+        		{
+        			bankData[i + (j * 344) + l] = clipboard->rawData()[l];
+        		}
+        	});
+        	pasteDialog->setCancelable(false);
+        	pasteDialog->open();
         	return true;
         });
         pokelist2[i][j]->registerAction("Dump pkx", brls::Key::Y, [=]()->bool{
@@ -361,15 +400,49 @@ int main(int argc, char* argv[])
         
         blahbakata->addView(vaporeon[l][k]);
         vaporeon[l][k]->registerAction("Copy", brls::Key::L, [=]()->bool{
+			clipBoxIdx = l;
+			clipPkmIdx = k;
+			clipFromBank = false;
         	clipboard = save->pkm(l, k)->partyClone();
         	return true;
         });
         vaporeon[l][k]->registerAction("Paste", brls::Key::R, [=]()->bool{
-        	clipboard = save->transfer(*clipboard);
-        	clipboard->refreshChecksum();
-        	save->pkm(*clipboard, l, k, true);
-        	save->dex(*clipboard);
-        	
+        	brls::Dialog* pasteDialog = new brls::Dialog("Do you want to\nmove or copy?");
+        	pasteDialog->addButton("Copy", [=](brls::View* view){
+        		pasteDialog->close();
+        		clipboard = save->transfer(*clipboard);
+        		clipboard->refreshChecksum();
+        		save->pkm(*clipboard, l, k, true);
+        		save->dex(*clipboard);
+        	});
+        	pasteDialog->addButton("Move", [=](brls::View* view){
+        		pasteDialog->close();
+        		FILE* emptyPkxFile = fopen("romfs:/Empty Space.pk8", "rb");
+        		u8* emptyPkxData = new u8[344];
+        		fread(emptyPkxData, 1, 344, emptyPkxFile);
+        		fclose(emptyPkxFile);
+        		std::unique_ptr<pksm::PKX> emptyPkx = pksm::PKX::getPKM(pksm::Generation::EIGHT, emptyPkxData, (size_t)344, false);
+        		emptyPkx = save->transfer(*emptyPkx);
+        		emptyPkx->refreshChecksum();
+        		if (clipFromBank)
+        		{
+        			for (int l = 0; l < 344; l++)
+        			{
+        				bankData[clipBoxIdx + (clipPkmIdx * 344) + l] = emptyPkx->rawData()[l];
+        			}
+        		}
+        		else
+        		{
+        			save->pkm(*emptyPkx, clipBoxIdx, clipPkmIdx, true);
+        			save->dex(*emptyPkx);
+        		}
+        		clipboard = save->transfer(*clipboard);
+        		clipboard->refreshChecksum();
+        		save->pkm(*clipboard, l, k, true);
+        		save->dex(*clipboard);
+        	});
+        	pasteDialog->setCancelable(false);
+        	pasteDialog->open();
         	return true;
         });
         vaporeon[l][k]->registerAction("Dump pkx", brls::Key::Y, [=]()->bool{
@@ -402,6 +475,12 @@ int main(int argc, char* argv[])
         	
         	return true;
         });
+        /*if (namelst[l][k] != "(Empty Space)")
+        {
+        	vaporeon[l][k]->getClickEvent()->subscribe([=](brls::View* view) {
+        		
+        	});
+        }*/
     }
     }
     		});
