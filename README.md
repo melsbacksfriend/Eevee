@@ -6,7 +6,8 @@ A free, offline Pokémon Home alternative for Switch!
 - Cloning
 
 ## Features planned: 
-- Editing
+- ~~Editing~~
+- LGPE support
 
 ## Origin behind the name: 
 I named this program Eevee because of something funny my brother said about Eevee and a Joy-Con.  For more info, go to the funny-stories channel on my Discord server
