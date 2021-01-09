@@ -44,6 +44,7 @@
 #include <thread>
 #include <chrono>
 #include <i18n/i18n_internal.hpp>
+#include <borealis/swkbd.hpp>
 
 std::vector<std::vector<std::string>> namelst(32);
 
@@ -150,17 +151,6 @@ std::string toSpriteName(std::string pokemonName)
     returnVal += pokemonName;
     return returnVal;
 }
-
-std::vector<std::string> NOTIFICATIONS = {
-    "You have cool hair",
-    "I like your shoes",
-    "borealis is powered by nanovg",
-    "The Triforce is an inside job",
-    "Pozznx will trigger in one day and twelve hours",
-    "Aurora Borealis? At this time of day, at this time of year, in this part of the gaming market, located entirely within your Switch?!",
-    "May I see it?",
-    "Hmm, Steamed Hams!"
-};
 
 int main(int argc, char* argv[])
 {
@@ -475,12 +465,89 @@ int main(int argc, char* argv[])
         	
         	return true;
         });
-        /*if (namelst[l][k] != "(Empty Space)")
+        if (pokeToString(save->pkm(l, k)->species()) != "(Empty Space)")
         {
         	vaporeon[l][k]->getClickEvent()->subscribe([=](brls::View* view) {
-        		
+        		brls::TabFrame* popupTabFrame = new brls::TabFrame();
+        		brls::List* basicTabList = new brls::List();
+        		clipboard = save->pkm(l, k)->partyClone();
+				clipBoxIdx = l;
+				clipPkmIdx = k;
+				clipFromBank = false;
+        		brls::ListItem* isShiny = new brls::ListItem("Shiny");
+        		isShiny->setChecked(save->pkm(l, k)->shiny());
+        		isShiny->registerAction("Toggle off", brls::Key::L, [=]()->bool{
+        			clipboard->shiny(false);
+        			isShiny->setChecked(clipboard->shiny());
+        			return true;
+        		});
+        		isShiny->registerAction("Toggle on", brls::Key::R, [=]()->bool{
+        			clipboard->shiny(true);
+        			isShiny->setChecked(clipboard->shiny());
+        			return true;
+        		});
+        		brls::SelectListItem* gender = new brls::SelectListItem("Gender", {"Male", "Female", "Genderless"}, (unsigned)clipboard->gender(), "");
+        		gender->getValueSelectedEvent()->subscribe([=](int num){
+        			clipboard->gender((pksm::Gender)gender->getSelectedValue());
+        		});
+        		brls::SelectListItem* lang;
+        		if ((unsigned)clipboard->language() < 6)
+        		{
+        			lang = new brls::SelectListItem("Language", {"Japanese", "English", "French", "Italian", "German", "Spanish", "Korean", "Simplified Chinese", "Traditional Chinese"}, (unsigned)clipboard->language() - 1, "");
+        		}
+        		else
+        		{
+        			lang = new brls::SelectListItem("Language", {"Japanese", "English", "French", "Italian", "German", "Spanish", "Korean", "Simplified Chinese", "Traditional Chinese"}, (unsigned)clipboard->language() - 2, "");
+        		}
+        		lang->getValueSelectedEvent()->subscribe([=](int num){
+        			if (lang->getSelectedValue() <= 4)
+        			{
+        				clipboard->language((pksm::Language)(lang->getSelectedValue() + 1));
+        			}
+        			else
+        			{
+        				clipboard->language((pksm::Language)(lang->getSelectedValue() + 2));
+        			}
+        		});
+        		brls::ListItem* level = new brls::ListItem("Level");
+        		level->setValue(std::to_string((int)clipboard->level()));
+        		level->getClickEvent()->subscribe([=](brls::View* view){
+        			brls::Swkbd::openForNumber([=](int num){
+        				if (num > 0 && num <= 100)
+        				{
+        					clipboard->level((u8)num);
+        					level->setValue(std::to_string(num));
+        				}
+        				else if (num <= 0)
+        				{
+        					clipboard->level((u8)1);
+        					level->setValue("1");
+        				}
+        				else
+        				{
+        					clipboard->level((u8)100);
+        					level->setValue("100");
+        				}
+        			}, "Level (1-100)", "", 3, "", "", "");
+        		});
+        		brls::ListItem* nick = new brls::ListItem("Nickname");
+        		nick->setValue(clipboard->nickname());
+        		nick->getClickEvent()->subscribe([=](brls::View* view){
+        			brls::Swkbd::openForText([=](std::string str){
+        				clipboard->nicknamed(true);
+        				clipboard->nickname(str);
+        				nick->setValue(str);
+        			}, "Enter Nickname", "", 12, "");
+        		});
+        		basicTabList->addView(nick);
+        		basicTabList->addView(level);
+        		basicTabList->addView(lang);
+        		basicTabList->addView(gender);
+        		basicTabList->addView(isShiny);
+        		popupTabFrame->addTab("Basic Details", basicTabList);
+        		brls::PopupFrame::open("Pokémon editor", BOREALIS_ASSET("icon/borealis.jpg"), popupTabFrame, "", "");
         	});
-        }*/
+        }
     }
     }
     		});
