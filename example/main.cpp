@@ -176,7 +176,7 @@ int main(int argc, char* argv[])
 	if (!CheckFileExists("sdmc:/switch/Eevee.bank"))
 	{
 		std::ofstream bnkCreate("sdmc:/switch/Eevee.bank", std::ios::binary);
-		for (int i = 0; i < 2064000; i++)
+		for (int i = 0; i < 10320; i++)
 		{
 			bnkCreate << '\0';
 		}
@@ -184,16 +184,20 @@ int main(int argc, char* argv[])
 	}
 	brls::List* bankStorage = new brls::List();
     std::vector<brls::Label*> bankBoxes;
-    std::vector<std::vector<std::string>> pokelist(200);
-    std::vector<std::vector<brls::ListItem*>> pokelist2(200);
-    std::vector<std::vector<std::shared_ptr<pksm::PKX>>> pokegomz(200);
 	FILE* bnk = fopen("sdmc:/switch/Eevee.bank", "rb");
-	u8* bankData = new u8[2064000];
+	fseek(bnk, 0, SEEK_END);
+    u32 bnkSize = ftell(bnk);
+    rewind(bnk);
+    fseek(bnk, 0, SEEK_SET);
+    std::vector<std::vector<std::string>> pokelist((size_t)(bnkSize / 344 / 30));
+    std::vector<std::vector<brls::ListItem*>> pokelist2((size_t)(bnkSize / 344 / 30));
+    std::vector<std::vector<std::shared_ptr<pksm::PKX>>> pokegomz((size_t)(bnkSize / 344 / 30));
+	u8* bankData = new u8[bnkSize];
 	u8* tempPokegom = new u8[344];
-	fread(bankData, 1, 2064000, bnk);
+	fread(bankData, 1, bnkSize, bnk);
 	fclose(bnk);
 	int k = 0;
-	for (int i = 0; i < 200; i++)
+	for (unsigned int i = 0; i < bnkSize / 344 / 30; i++)
 	{
         bankBoxes.push_back(new brls::Label(brls::LabelStyle::REGULAR, "Bank " + std::to_string(i + 1), true));
         bankStorage->addView(bankBoxes[i]);
@@ -332,7 +336,16 @@ int main(int argc, char* argv[])
         	fclose(out);
         	FILE* bnkout = fopen("sdmc:/switch/Eevee.bank", "wb");
         	fseek(bnkout, 0, SEEK_SET);
-        	fwrite(bankData, 1, 2064000, bnkout);
+        	fwrite(bankData, 1, bnkSize, bnkout);
+        	if (pokegomz[(bnkSize / 344 / 30) - 1][29]->species() != pksm::Species::None)
+        	{
+        		u8* newBox = new u8[10320];
+        		for (int i = 0; i < 10320; i++)
+        		{
+        			newBox[i] = '\0';
+        		}
+        		fwrite(newBox, 1, 10320, bnkout);
+        	}
         	fclose(bnkout);
         });
     for(unsigned long i = 0; i < titles.size(); i++)
