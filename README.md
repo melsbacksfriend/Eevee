@@ -4,6 +4,7 @@ A free, offline Pokémon Home alternative for Switch!
 ## Features currently available: 
 - Bank
 - Cloning
+- Editing
 
 ## Features planned: 
 - ~~Editing~~
