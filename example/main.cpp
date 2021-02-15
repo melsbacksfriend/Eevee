@@ -32,6 +32,8 @@
 #include <utils/crypto.hpp>
 #include <utils/random.hpp>
 #include <pkx/PK8.hpp>
+#include <pkx/PK7.hpp>
+#include <pkx/PK6.hpp>
 #include <sav/Sav8.hpp>
 #include <sav/SavSWSH.hpp>
 #include <filesystem>
@@ -45,6 +47,7 @@
 #include <chrono>
 #include <i18n/i18n_internal.hpp>
 #include <borealis/swkbd.hpp>
+#include <regex>
 
 std::vector<std::vector<std::string>> namelst(32);
 
@@ -54,6 +57,7 @@ std::unique_ptr<pksm::PKX> clipboard;
 int clipBoxIdx;
 int clipPkmIdx;
 bool clipFromBank;
+bool clipFromInject;
 std::string filepath;
 u32 size = 0;
 bool CheckIsDir(std::string Path)
@@ -232,6 +236,8 @@ int main(int argc, char* argv[])
         	return true;
         });
         pokelist2[i][j]->registerAction("Paste", brls::Key::R, [=]()->bool{
+        	if (!clipFromInject)
+        	{
         	brls::Dialog* pasteDialog = new brls::Dialog("Do you want to\nmove or copy?");
         	pasteDialog->addButton("Copy", [=](brls::View* view){
         		pasteDialog->close();
@@ -270,6 +276,15 @@ int main(int argc, char* argv[])
         	});
         	pasteDialog->setCancelable(false);
         	pasteDialog->open();
+        	}
+        	else
+        	{
+        		clipboard->refreshChecksum();
+        		for (int l = 0; l < 344; l++)
+        		{
+        			bankData[i + (j * 344) + l] = clipboard->rawData()[l];
+        		}
+        	}
         	return true;
         });
         pokelist2[i][j]->registerAction("Dump pkx", brls::Key::Y, [=]()->bool{
@@ -303,6 +318,56 @@ int main(int argc, char* argv[])
         	return true;
         });
 		}
+	}
+	
+	brls::List* toBeInjected = new brls::List();
+	if(!CheckFileExists("sdmc:/switch/Eevee/inject"))
+	{
+		std::filesystem::create_directories("sdmc:/switch/Eevee/inject");
+	}
+	std::vector<dirent> externPkmn = LoadDirs("sdmc:/switch/Eevee/inject");
+	std::vector<brls::ListItem*> externPkmnListItem;
+	std::vector<std::string> externPkmnStr;
+	for (unsigned long i = 0; i < externPkmn.size(); i++)
+	{
+		std::string tmpstr = externPkmn[i].d_name;
+		if (std::regex_match(tmpstr, std::regex(".*(\\.pk6|\\.pk7|\\.pk8)$")))
+		{
+			externPkmnStr.push_back(tmpstr);
+			externPkmnListItem.push_back(new brls::ListItem(tmpstr));
+		}
+	}
+	for (unsigned long i = 0; i < externPkmnListItem.size(); i++)
+	{
+		externPkmnListItem[i]->getClickEvent()->subscribe([=](brls::View* view){
+			FILE* injectedPkmn = fopen(("sdmc:/switch/Eevee/inject/" + externPkmnStr[i]).c_str(), "rb");
+			fseek(injectedPkmn, 0, SEEK_END);
+			u32 injectedPkmnSize = ftell(injectedPkmn);
+			rewind(injectedPkmn);
+			u8* injectedPkmnData = new u8[injectedPkmnSize];
+			fseek(injectedPkmn, 0, SEEK_SET);
+			fread(injectedPkmnData, 1, injectedPkmnSize, injectedPkmn);
+			fclose(injectedPkmn);
+			if (std::regex_match(externPkmnStr[i], std::regex(".*\\.pk6$")))
+			{
+				std::unique_ptr<pksm::PKX> injectedPkmnPkx = pksm::PKX::getPKM(pksm::Generation::SIX, injectedPkmnData, (size_t)injectedPkmnSize, false);
+				clipboard = injectedPkmnPkx->convertToG8(*save);
+			}
+			if (std::regex_match(externPkmnStr[i], std::regex(".*\\.pk7$")))
+			{
+				std::unique_ptr<pksm::PKX> injectedPkmnPkx = pksm::PKX::getPKM(pksm::Generation::SEVEN, injectedPkmnData, (size_t)injectedPkmnSize, false);
+				clipboard = injectedPkmnPkx->convertToG8(*save);
+			}
+			if (std::regex_match(externPkmnStr[i], std::regex(".*\\.pk8$")))
+			{
+				std::unique_ptr<pksm::PKX> injectedPkmnPkx = pksm::PKX::getPKM(pksm::Generation::EIGHT, injectedPkmnData, (size_t)injectedPkmnSize, false);
+				clipboard = injectedPkmnPkx->partyClone();
+			}
+			clipFromInject = true;
+			clipFromBank = false;
+			brls::Application::notify("The Pokémon is now\nconverted and on the\nclipboard!");
+		});
+	toBeInjected->addView(externPkmnListItem[i]);
 	}
 	
     brls::Label* testLabel = new brls::Label(brls::LabelStyle::REGULAR, "At least one Checkpoint backup is required.", true);
@@ -410,6 +475,8 @@ int main(int argc, char* argv[])
         	return true;
         });
         vaporeon[l][k]->registerAction("Paste", brls::Key::R, [=]()->bool{
+        	if (!clipFromInject)
+        	{
         	brls::Dialog* pasteDialog = new brls::Dialog("Do you want to\nmove or copy?");
         	pasteDialog->addButton("Copy", [=](brls::View* view){
         		pasteDialog->close();
@@ -446,6 +513,14 @@ int main(int argc, char* argv[])
         	});
         	pasteDialog->setCancelable(false);
         	pasteDialog->open();
+        	}
+        	else
+        	{
+        		clipboard = save->transfer(*clipboard);
+        		clipboard->refreshChecksum();
+        		save->pkm(*clipboard, l, k, true);
+        		save->dex(*clipboard);
+        	}
         	return true;
         });
         vaporeon[l][k]->registerAction("Dump pkx", brls::Key::Y, [=]()->bool{
@@ -581,6 +656,7 @@ int main(int argc, char* argv[])
     rootFrame->addSeparator();
     rootFrame->addTab("Current Save", blahbakata);
     rootFrame->addTab("Bank", bankStorage);
+    rootFrame->addTab("inject folder", toBeInjected);
 
     // Add the root view to the stack
     brls::Application::pushView(rootFrame);
