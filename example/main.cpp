@@ -48,6 +48,7 @@
 #include <i18n/i18n_internal.hpp>
 #include <borealis/swkbd.hpp>
 #include <regex>
+#include <cstdlib>
 
 std::vector<std::vector<std::string>> namelst(32);
 
@@ -158,6 +159,7 @@ std::string toSpriteName(std::string pokemonName)
 
 int main(int argc, char* argv[])
 {
+	srand(time(0));
     // Init the app
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
 
@@ -319,6 +321,34 @@ int main(int argc, char* argv[])
         });
 		}
 	}
+	
+	brls::List* batchEditTab = new brls::List();
+	brls::SelectListItem* location = new brls::SelectListItem("Location for batch edit", {"Box 1", "Box 2", "Box 3", "Box 4", "Box 5", "Box 6", "Box 7", "Box 8", "Box 9", "Box 10", "Box 11", "Box 12", "Box 13", "Box 14", "Box 15", "Box 16", "Box 17", "Box 18", "Box 19", "Box 20", "Box 21", "Box 22", "Box 23", "Box 24", "Box 25", "Box 26", "Box 27", "Box 28", "Box 29", "Box 30", "Box 31", "Box 32"});
+	std::vector<pksm::Move> eeveeMoves = {pksm::Move::Tackle, pksm::Move::TailWhip, pksm::Move::Growl, pksm::Move::HelpingHand, pksm::Move::Covet, pksm::Move::SandAttack, pksm::Move::QuickAttack, pksm::Move::BabyDollEyes, pksm::Move::Swift, pksm::Move::Bite, pksm::Move::Copycat, pksm::Move::BatonPass, pksm::Move::TakeDown, pksm::Move::Charm, pksm::Move::DoubleEdge, pksm::Move::LastResort, pksm::Move::PayDay, pksm::Move::Dig, pksm::Move::Rest, pksm::Move::Snore, pksm::Move::Protect, pksm::Move::Charm, pksm::Move::Attract, pksm::Move::RainDance, pksm::Move::SunnyDay, pksm::Move::Facade, pksm::Move::Swift, pksm::Move::HelpingHand, pksm::Move::WeatherBall, pksm::Move::FakeTears, pksm::Move::Round, pksm::Move::Retaliate, pksm::Move::BodySlam, pksm::Move::FocusEnergy, pksm::Move::Substitute, pksm::Move::Endure, pksm::Move::SleepTalk, pksm::Move::BatonPass, pksm::Move::IronTail, pksm::Move::ShadowBall, pksm::Move::HyperVoice, pksm::Move::StoredPower, pksm::Move::WorkUp, pksm::Move::Curse, pksm::Move::Detect, pksm::Move::DoubleKick, pksm::Move::Flail, pksm::Move::MudSlap, pksm::Move::Tickle, pksm::Move::Wish, pksm::Move::Yawn};
+	brls::ListItem* joyconhax = new brls::ListItem("Cover Eevee's \"daycare part\" with a Joy-Con");
+	joyconhax->getClickEvent()->subscribe([=](brls::View* view){
+		for (int i = 0; i < 30; i++)
+		{
+			if (save->pkm(location->getSelectedValue(), i)->species() != pksm::Species::None)
+			{
+				std::unique_ptr<pksm::PKX> eeveePkx = save->pkm(location->getSelectedValue(), i)->partyClone();
+				eeveePkx->species(pksm::Species::Eevee);
+				eeveePkx->move(0, eeveeMoves[rand() % eeveeMoves.size()]);
+				eeveePkx->move(1, eeveeMoves[rand() % eeveeMoves.size()]);
+				eeveePkx->move(2, eeveeMoves[rand() % eeveeMoves.size()]);
+				eeveePkx->move(3, eeveeMoves[rand() % eeveeMoves.size()]);
+				eeveePkx->level(1 + rand() % 100);
+				eeveePkx->nickname("Eevee");
+				eeveePkx->gender((pksm::Gender)(rand() % 2));
+				eeveePkx = save->transfer(*eeveePkx);
+				eeveePkx->refreshChecksum();
+				save->pkm(*eeveePkx, location->getSelectedValue(), i, true);
+				save->dex(*eeveePkx);
+			}
+		}
+	});
+	batchEditTab->addView(location);
+	batchEditTab->addView(joyconhax);
 	
 	brls::List* toBeInjected = new brls::List();
 	if(!CheckFileExists("sdmc:/switch/Eevee/inject"))
@@ -653,6 +683,7 @@ int main(int argc, char* argv[])
 
     rootFrame->addTab("Game Selector", testList);
     rootFrame->addTab("Save Selector", testLayers);
+    rootFrame->addTab("Batch Edit", batchEditTab);
     rootFrame->addSeparator();
     rootFrame->addTab("Current Save", blahbakata);
     rootFrame->addTab("Bank", bankStorage);
