@@ -45,7 +45,7 @@ ICON		:=	resources/icon/borealis.jpg
 INCLUDES	:=	example
 APP_TITLE	:=	Eevee
 APP_AUTHOR	:=	Melsbacksfriend
-APP_VERSION	:=	2.0.1
+APP_VERSION	:=	2.1.0
 
 ROMFS				:=	resources
 BOREALIS_PATH		:=	.
